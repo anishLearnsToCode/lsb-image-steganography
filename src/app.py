@@ -2,6 +2,7 @@ import os
 from flask import Flask, jsonify, render_template, request
 from utils import *
 import cv2
+import random
 
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -23,6 +24,13 @@ def decrypt_image():
     return render_template('decrypt-image.html')
 
 
+def random_string(length=10):
+    result = ''
+    for i in range(length):
+        result += chr(random.randint(97, 122))
+    return result
+
+
 @app.route('/lsb_image_encrypt', methods=['POST'])
 def lsb_image_encrypt():
     target = os.path.join(APP_ROOT, 'static')
@@ -33,7 +41,8 @@ def lsb_image_encrypt():
     file_name, file_extension = os.path.splitext(file.filename)
     initial_file_destination = os.path.join(target, file_name + file_extension)
     final_file_destination = os.path.join(target, file_name + PNG)
-    final_path = os.path.join(target, file_name + 'xxxxxxxxx' + PNG)
+    final_file_name = file_name + random_string() + PNG
+    final_path = os.path.join(target, final_file_name)
 
     # saving the obtained file to load image matrix
     file.save(initial_file_destination)
@@ -52,7 +61,7 @@ def lsb_image_encrypt():
     # saving encrypted image in the static directory
     cv2.imwrite(final_path, J)
 
-    return render_template('encrypted-image.html', image_name=file_name + 'xxxxxxxxx' + PNG)
+    return render_template('encrypted-image.html', image_name=final_file_name)
 
 
 @app.route('/lsb_image_decrypt', methods=['POST'])
@@ -67,8 +76,7 @@ def lsb_image_decrypt():
 
     file.save(destination)
     I = cv2.imread(destination)
-    os.remove(destination)
-    return lsb_decrypt(I)
+    return render_template('decrypted-image.html', image_name=file_name, message=lsb_decrypt(I))
 
 
 if __name__ == '__main__':
