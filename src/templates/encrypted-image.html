@@ -11,7 +11,14 @@
     The Following Image contains the hidden message, you can download and share this image with the intended recipient
     who can then decrypt and discover the hidden message using <a href="{{ url_for('decrypt_image') }}">this tool</a>
 </p>
-<img src="{{ url_for('static', filename=image_name) }}" alt="encrypted image">
+<img src="{{ url_for('static', filename=encrypted_image) }}" alt="encrypted image">
+
+<h3>The Original Image</h3>
+<p>Just to show that encryption causes no perceivable change in the Image, also observe the original Image below</p>
+<details>
+    <summary>See Original Image</summary>
+    <img alt="original image" src="{{ url_for('static', filename=original_image) }}">
+</details>
 
 </body>
 </html>

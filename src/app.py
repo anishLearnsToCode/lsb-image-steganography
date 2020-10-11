@@ -39,9 +39,9 @@ def lsb_image_encrypt():
 
     file = request.files.getlist('file')[0]
     file_name, file_extension = os.path.splitext(file.filename)
-    initial_file_destination = os.path.join(target, file_name + file_extension)
-    final_file_destination = os.path.join(target, file_name + PNG)
     final_file_name = file_name + random_string() + PNG
+    initial_file_destination = os.path.join(target, final_file_name)
+    final_file_destination = os.path.join(target, final_file_name)
     final_path = os.path.join(target, final_file_name)
 
     # saving the obtained file to load image matrix
@@ -52,7 +52,6 @@ def lsb_image_encrypt():
     # saving this image as png and loading png matrix
     cv2.imwrite(final_file_destination, I)
     I = cv2.imread(final_file_destination)
-    os.remove(final_file_destination)
 
     # extracting message and creating encrypted image
     message = request.form['message']
@@ -61,7 +60,7 @@ def lsb_image_encrypt():
     # saving encrypted image in the static directory
     cv2.imwrite(final_path, J)
 
-    return render_template('encrypted-image.html', image_name=final_file_name)
+    return render_template('encrypted-image.html', encrypted_image=final_file_name, original_image=final_file_name)
 
 
 @app.route('/lsb_image_decrypt', methods=['POST'])
