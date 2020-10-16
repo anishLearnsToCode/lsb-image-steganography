@@ -6,7 +6,18 @@
 1. [Bibliography](#bibliography)
 
 ## Introduction
+Steganography is the art of hiding messages so that they can only be read or interpreted by the receiving
+party for whom it was meant for. It is different from Cryptography, as Cryptography relies on encrypting
+(changing) the dat using an encryption function such that only the intended receiving party can decrypt
+it and see the plaintext message.
 
+Steganography on the other hand relies on the principle of security by obscurity, hiding the message in 
+plain sight. There are many different methods of hiding data inside Images, one of the simplest and
+very efficient ways to do that is by using the LSB (Least Significant Bit) Steganography technique.
+
+In this technique we store the data bits in each of the least significant bits of the Red, Blue and 
+green channel. In this project I implement the LSB technique and furyher enhance it by adding an 
+additional Blue channel layer for pixel storage.
 
 ## Running it on Your Machine
 Clone this repository and install all dependencies
