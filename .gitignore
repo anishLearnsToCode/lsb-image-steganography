@@ -6,3 +6,4 @@ src/__pycache__
 src/static
 src/image
 venv
+notebook/.ipynb_checkpoints
