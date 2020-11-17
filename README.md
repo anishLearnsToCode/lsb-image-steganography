@@ -1,6 +1,6 @@
 # LSB Steganography
 
-⭐ [Project Report]() | 📓 [Running Notebook]()
+⭐ [Project Report](assets) | 📓 [Running Notebook](notebook/method-explanation.ipynb)
 
 ## 📖 Overview
 1. [Introduction](#introduction)
