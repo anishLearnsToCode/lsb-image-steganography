@@ -1,6 +1,6 @@
 # LSB Steganography
 
-⭐ [Project Report](assets) | 📓 [Method Explanation](notebook/method-explanation.ipynb)
+⭐ [Project Report](assets/2-channel-lsb-steganography-project-report.pdf) | 📓 [Method Explanation](notebook/method-explanation.ipynb)
 
 ## 📖 Overview
 1. [Introduction](#introduction)
